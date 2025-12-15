@@ -1,42 +1,115 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  /* 颜色变量 - 深色主题 */
+  --bg-primary: #020617; /* slate-950 */
+  --bg-primary-70: rgba(2, 6, 23, 0.7); /* slate-950/70 */
+  --bg-secondary: rgba(15, 23, 42, 1); /* slate-900 */
+  --bg-secondary-50: rgba(15, 23, 42, 0.5); /* slate-900/50 */
+  --bg-tertiary: rgba(30, 41, 59, 0.4); /* slate-800/40 */
+  --bg-glass: rgba(30, 41, 59, 0.4); /* 玻璃态背景 */
+  --bg-glass-hover: rgba(30, 41, 59, 0.5);
+  --bg-overlay: rgba(0, 0, 0, 0.2);
+  
+  /* 文本颜色 */
+  --text-primary: #f8fafc; /* slate-50 */
+  --text-secondary: rgba(148, 163, 184, 1); /* slate-400 */
+  --text-tertiary: rgba(100, 116, 139, 1); /* slate-500 */
+  --text-muted: rgba(71, 85, 105, 1); /* slate-600 */
+  
+  /* 边框颜色 */
+  --border-primary: rgba(255, 255, 255, 0.05);
+  --border-secondary: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.2);
+  --border-slate: rgba(51, 65, 85, 1); /* slate-700 */
+  
+  /* 主色调 - Indigo */
+  --indigo-200: rgba(199, 210, 254, 1);
+  --indigo-400: rgba(129, 140, 248, 1);
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+  --indigo-500-10: rgba(99, 102, 241, 0.1);
+  --indigo-500-20: rgba(99, 102, 241, 0.2);
+  --indigo-500-40: rgba(99, 102, 241, 0.4);
+  --indigo-500-50: rgba(99, 102, 241, 0.5);
+  
+  /* 主色调 - Purple */
+  --purple-500: #9333ea;
+  --purple-600: #9333ea;
+  
+  /* 渐变 */
+  --gradient-indigo-purple: linear-gradient(to top right, #6366f1, #9333ea);
+  --gradient-indigo-purple-horizontal: linear-gradient(to right, #6366f1, #9333ea);
+  
+  /* 渐变背景 */
+  --gradient-bg-1: rgba(67, 56, 202, 0.2); /* indigo-900/20 */
+  --gradient-bg-2: rgba(147, 51, 234, 0.2); /* purple-900/20 */
+  
+  /* 玻璃态效果 */
+  --glass-bg: rgba(30, 41, 59, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-blur: blur(12px);
+  
+  /* 阴影 */
+  --shadow-indigo: 0 10px 15px -3px rgba(99, 102, 241, 0.2), 0 4px 6px -2px rgba(99, 102, 241, 0.2);
+  --shadow-indigo-hover: 0 10px 15px -3px rgba(99, 102, 241, 0.4), 0 4px 6px -2px rgba(99, 102, 241, 0.4);
+  --shadow-indigo-lg: 0 10px 15px -3px rgba(99, 102, 241, 0.25), 0 4px 6px -2px rgba(99, 102, 241, 0.25);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* 其他颜色 */
+  --white-5: rgba(255, 255, 255, 0.05);
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-20: rgba(255, 255, 255, 0.2);
+  
+  /* 滚动条 */
+  --scrollbar-thumb: rgba(51, 65, 85, 1);
+  --scrollbar-track: rgba(15, 23, 42, 1);
+  --scrollbar-thumb-hover: rgba(71, 85, 105, 1);
+  
+  /* 默认颜色（用于浅色模式兼容，当前为深色主题） */
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+html,
+body,
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
-.card {
-  padding: 2em;
+/* Webkit scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.read-the-docs {
-  color: #888;
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
 }

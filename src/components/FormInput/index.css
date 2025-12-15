@@ -1,0 +1,181 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-left: 4px;
+}
+
+.form-input-wrapper {
+  position: relative;
+}
+
+.form-input-icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  height: 48px;
+  z-index: 1;
+}
+
+.form-input-icon svg,
+.form-input-icon > * {
+  width: 20px;
+  height: 20px;
+  color: var(--text-tertiary);
+  transition: color 0.3s ease;
+}
+
+.form-input-wrapper:focus-within .form-input-icon svg,
+.form-input-wrapper:focus-within .form-input-icon > * {
+  color: var(--indigo-400);
+}
+
+.form-input {
+  width: 100%;
+  height: 48px;
+  padding-left: 44px;
+  padding-right: 16px;
+  background: rgba(15, 23, 42, 0.5) !important;
+  border: 1px solid var(--border-slate) !important;
+  border-radius: 12px !important;
+  color: var(--text-primary) !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* 当没有图标时，调整 padding */
+.form-input:not(.form-input-with-icon) {
+  padding-left: 16px;
+}
+
+.form-input::placeholder {
+  color: var(--text-tertiary) !important;
+}
+
+.form-input:hover {
+  border-color: var(--border-slate) !important;
+}
+
+.form-input:focus,
+.form-input-focused {
+  outline: none !important;
+  border-color: var(--indigo-500) !important;
+  box-shadow: 0 0 0 1px var(--indigo-500) !important;
+}
+
+.form-input:disabled {
+  background: var(--bg-secondary) !important;
+  color: var(--text-muted) !important;
+  cursor: not-allowed !important;
+  opacity: 0.7 !important;
+}
+
+/* Antd Input 内部元素样式覆盖 */
+.form-input .ant-input {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  font-size: 14px !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.form-input .ant-input::placeholder {
+  color: var(--text-tertiary) !important;
+}
+
+.form-input .ant-input:focus {
+  box-shadow: none !important;
+}
+
+/* Password 输入框样式 */
+.form-input.ant-input-password {
+  padding-left: 44px;
+}
+
+.form-input.ant-input-password .ant-input {
+  padding-right: 40px !important;
+}
+
+/* Password 眼睛图标颜色 */
+.form-input.ant-input-password .ant-input-suffix .anticon,
+.form-input.ant-input-password .ant-input-password-icon,
+.form-input.ant-input-password .anticon-eye,
+.form-input.ant-input-password .anticon-eye-invisible {
+  color: var(--text-tertiary) !important;
+  transition: color 0.3s ease;
+}
+
+.form-input.ant-input-password .ant-input-suffix .anticon:hover,
+.form-input.ant-input-password .ant-input-password-icon:hover,
+.form-input.ant-input-password .anticon-eye:hover,
+.form-input.ant-input-password .anticon-eye-invisible:hover {
+  color: var(--indigo-400) !important;
+}
+
+.form-input-wrapper:focus-within .ant-input-password .ant-input-suffix .anticon,
+.form-input-wrapper:focus-within .ant-input-password .ant-input-password-icon,
+.form-input-wrapper:focus-within .ant-input-password .anticon-eye,
+.form-input-wrapper:focus-within .ant-input-password .anticon-eye-invisible {
+  color: var(--indigo-400) !important;
+}
+
+/* 确保所有 antd 图标在密码输入框中都有正确的颜色 */
+.form-input.ant-input-password .ant-input-suffix svg {
+  color: var(--text-tertiary) !important;
+}
+
+.form-input.ant-input-password .ant-input-suffix svg:hover {
+  color: var(--indigo-400) !important;
+}
+
+.form-input-wrapper:focus-within .ant-input-password .ant-input-suffix svg {
+  color: var(--indigo-400) !important;
+}
+
+/* 搜索框样式 */
+.form-input.ant-input-search {
+  padding-left: 44px;
+}
+
+.form-input.ant-input-search .ant-input {
+  padding-right: 40px !important;
+}
+
+/* TextArea 样式 */
+.form-input.ant-input {
+  min-height: 48px;
+  height: auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.form-input-wrapper:has(.ant-input[rows]) .form-input-icon {
+  align-items: flex-start;
+  padding-top: 12px;
+  height: auto;
+}
+
+/* Button 输入框样式 */
+.form-input-button-group {
+  display: flex;
+  gap: 12px;
+}
+
+.form-input-wrapper-flex {
+  flex: 1;
+}
+
