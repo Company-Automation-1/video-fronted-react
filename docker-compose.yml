@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   video-frontend:
-    image: ${IMAGE:-video-frontend}:latest
-    container_name: ${APP_NAME:-video-frontend}
+    image: ${IMAGE}:latest
+    container_name: ${APP_NAME}
     restart: unless-stopped
     networks:
       - video

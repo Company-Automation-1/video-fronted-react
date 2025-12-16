@@ -8,18 +8,16 @@ pipeline {
             daysToKeepStr: '7',        // 保留7天内的构建
             artifactNumToKeepStr: '5'  // 保留最近5次构建的工件
         ))
+        timeout(time: 30, unit: 'MINUTES')
+    }
+
+    triggers {
+        cron('H/5 * * * *')  // 每5分钟执行一次
     }
 
     environment {
-        // Docker 配置
-        DOCKER_HOST   = 'unix:///var/run/docker.sock'  // Docker Desktop（DooD）：让 Jenkins 直接连宿主机 Docker
-        
-        // Docker 镜像配置（可被 Job 参数/环境覆盖）
-        DOCKER_IMAGE  = "${env.DOCKER_IMAGE ?: 'video-frontend'}"  // Docker 镜像名（固定使用 latest 标签）
-        IMAGE         = "${env.IMAGE ?: env.DOCKER_IMAGE ?: 'video-frontend'}"  // docker-compose 使用的镜像名
-        
-        // 容器部署配置（可被 Job 参数/环境覆盖）
-        APP_NAME      = "${env.APP_NAME ?: 'video-frontend'}"  // 容器名称（用于反向代理访问）
+        IMAGE = 'video-frontend'      // Docker 镜像名
+        APP_NAME = 'video-frontend'  // 容器名称
     }
     stages {
         stage('Checkout') {
