@@ -13,7 +13,7 @@ export const login = async (data: {
     return request.post<API.Response<{
         access_token: string
         expires_in: number
-    }>>('/api/v1/auth/login', data)
+    }>>('/api/v1/auth/user/login', data)
 }
 
 /**
