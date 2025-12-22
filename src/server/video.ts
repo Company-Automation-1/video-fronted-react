@@ -6,7 +6,7 @@ import request from './request'
  * @returns 处理后的图片 Blob
  */
 export const processImage = async (formData: FormData): Promise<Blob> => {
-    return request.postBlob('/api-2/process_image', formData, {
+    return request.postBlob('/api/py/process_image', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
@@ -19,7 +19,7 @@ export const processImage = async (formData: FormData): Promise<Blob> => {
  * @returns 任务 ID
  */
 export const processVideo = async (formData: FormData): Promise<{ task_id: string }> => {
-    return request.post<{ task_id: string }>('/api-2/process_video', formData, {
+    return request.post<{ task_id: string }>('/api/py/process_video', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
@@ -32,6 +32,6 @@ export const processVideo = async (formData: FormData): Promise<{ task_id: strin
  * @returns 视频 URL（相对路径，会被代理处理）
  */
 export const getVideoResultUrl = (taskId: string) => {
-    return `/api-2/video_result/${taskId}`
+    return `/api/py/video_result/${taskId}`
 }
 
