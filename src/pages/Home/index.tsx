@@ -36,7 +36,7 @@ const Home = () => {
       })
 
       try {
-        const response = await processVideo(createFormData(file, normalMode, perturbProb))
+        const response = await processVideo(createFormData(file, normalMode, perturbProb), { showError: false })
         const taskId = response.task_id
 
         if (!taskId) {
@@ -53,7 +53,7 @@ const Home = () => {
           timestamp: Date.now()
         })
 
-        const eventSource = new EventSource(`/api/video_progress/${taskId}`)
+        const eventSource = new EventSource(`/api/py/video_progress/${taskId}`)
         
         eventSource.onmessage = (event) => {
           try {
@@ -86,8 +86,7 @@ const Home = () => {
           messageApi.error('连接错误，请刷新重试')
         }
       } catch (error) {
-        console.error('视频处理失败:', error)
-        messageApi.error(error instanceof Error ? error.message : '视频处理失败')
+        messageApi.error((error as API.ErrorResponse).message ?? '视频处理失败')
       }
     } else {
       addMessage({
@@ -99,7 +98,7 @@ const Home = () => {
       })
 
       try {
-        const blob = await processImage(createFormData(file, normalMode, perturbProb))
+        const blob = await processImage(createFormData(file, normalMode, perturbProb), { showError: false })
         addMessage({
           id: `ai-${Date.now()}`,
           type: 'ai',
@@ -109,8 +108,9 @@ const Home = () => {
         })
         messageApi.success('图片处理完成')
       } catch (error) {
-        console.error('图片处理失败:', error)
-        messageApi.error(error instanceof Error ? error.message : '图片处理失败')
+
+        const text = JSON.parse(await (error as Blob).text())
+        messageApi.error(text ? text.message : '图片处理失败')
       }
     }
   }

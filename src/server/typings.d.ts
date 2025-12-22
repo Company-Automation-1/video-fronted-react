@@ -8,4 +8,10 @@ declare namespace API {
         message?: string
         timestamp: number
     }
+    type ErrorResponse = {
+        code?: number
+        success?: boolean
+        message?: string
+        timestamp: number
+    }
 }

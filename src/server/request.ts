@@ -94,7 +94,7 @@ class Request {
                     }
                 }
                 
-                return Promise.reject(new Error(errorMessage))
+                return Promise.reject(error?.response?.data)
             }
         )
     }

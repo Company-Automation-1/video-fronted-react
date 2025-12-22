@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import request from './request'
 
 /**
@@ -5,11 +6,12 @@ import request from './request'
  * @param formData 表单数据（包含 file, perturb_prob, visual_debug）
  * @returns 处理后的图片 Blob
  */
-export const processImage = async (formData: FormData): Promise<Blob> => {
+export const processImage = async (formData: FormData, options?: { [key: string]: any }): Promise<Blob> => {
     return request.postBlob('/api/py/process_image', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
+        ...(options || {}),
     })
 }
 
@@ -18,11 +20,12 @@ export const processImage = async (formData: FormData): Promise<Blob> => {
  * @param formData 表单数据（包含 file, perturb_prob, visual_debug）
  * @returns 任务 ID
  */
-export const processVideo = async (formData: FormData): Promise<{ task_id: string }> => {
+export const processVideo = async (formData: FormData, options?: { [key: string]: any }): Promise<{ task_id: string }> => {
     return request.post<{ task_id: string }>('/api/py/process_video', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
+        ...(options || {}),
     })
 }
 
